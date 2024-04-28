@@ -1,0 +1,136 @@
+<view class="data-v-54d3589c">
+  <uni-nav-bar vue-id="45983bea-1" left-icon="back" leftIcon="arrowleft" title="Order Details" statusBar="true" fixed="true" color="#ffffff" backgroundColor="#333333" data-event-opts="{{[['^clickLeft',[['goBack']]]]}}" bind:clickLeft="__e" class="data-v-54d3589c" bind:__l="__l"></uni-nav-bar>
+  <view class="order_content orderDetail data-v-54d3589c">
+    <view class="order_content_box data-v-54d3589c" scroll-y="true" scroll-top="0rpx">
+      <view class="box data-v-54d3589c">
+        <view class="orderInfoTip data-v-54d3589c">
+          <view class="tit data-v-54d3589c">{{$root.m0}}</view>
+          <block wx:if="{{!timeout&&orderDetailsData.status===1}}">
+            <view class="data-v-54d3589c">
+              <view class="tit data-v-54d3589c">Waiting for payment</view>
+              <view class="time data-v-54d3589c">
+                <view class="timeIcon data-v-54d3589c"></view>Waiting for payment:<text class="data-v-54d3589c">{{rocallTime}}</text><text class="data-v-54d3589c">{{paymentTime}}</text>
+              </view>
+            </view>
+          </block>
+          <view class="againBtn data-v-54d3589c">
+            <block wx:if="{{!timeout&&orderDetailsData.status===1||orderDetailsData.status===2||orderDetailsData.status===3||orderDetailsData.status===4}}"><button class="new_btn data-v-54d3589c" type="default" data-event-opts="{{[['tap',[['handleCancel',['center','$0'],['orderDetailsData']]]]]}}" bindtap="__e">Cancel Order</button></block>
+            <block wx:if="{{!timeout&&orderDetailsData.status===1}}"><button class="new_btn btn data-v-54d3589c" type="default" data-event-opts="{{[['tap',[['handlePay',['$0'],['orderDetailsData.id']]]]]}}" bindtap="__e">Pay Now</button></block>
+            <block wx:if="{{orderDetailsData.status===2}}"><button class="new_btn btn data-v-54d3589c" type="default" data-event-opts="{{[['tap',[['handleReminder',['center','$0'],['orderDetailsData.id']]]]]}}" bindtap="__e">Reminders</button></block>
+            <block wx:if="{{orderDetailsData.status==5}}"><button class="new_btn data-v-54d3589c" type="default" data-event-opts="{{[['tap',[['handleRefund',['center']]]]]}}" bindtap="__e">Request a refund</button></block>
+            <block wx:if="{{orderDetailsData.status!==7}}"><button class="new_btn data-v-54d3589c" type="default" data-event-opts="{{[['tap',[['oneMoreOrder',['$0'],['orderDetailsData.id']]]]]}}" bindtap="__e">OneMore</button></block>
+          </view>
+        </view>
+      </view>
+      <block wx:if="{{!timeout&&orderDetailsData.status===1}}">
+        <view class="box timeTip data-v-54d3589c">
+          <view class="icon newIcon data-v-54d3589c"></view>Please complete payment within 15 minutes.
+        </view>
+      </block>
+      <block wx:if="{{orderDetailsData.status===6&&orderDetailsData.payStatus===2}}">
+        <view class="box timeTip data-v-54d3589c">
+          <view class="icon moneyIcon data-v-54d3589c"></view>Your order has been canceld<text class="data-v-54d3589c"> Refund successfully</text>
+        </view>
+      </block>
+      <view class="box order_list_cont data-v-54d3589c">
+        <view class="order_list data-v-54d3589c">
+          <view class="word_text data-v-54d3589c"><text class="word_style data-v-54d3589c">Missuo</text></view>
+          <view class="order-type data-v-54d3589c">
+            <block wx:for="{{$root.l0}}" wx:for-item="obj" wx:for-index="index" wx:key="index">
+              <view class="type_item data-v-54d3589c">
+                <view class="dish_img data-v-54d3589c">
+                  <image class="dish_img_url data-v-54d3589c" mode="aspectFill" src="{{obj.$orig.image}}"></image>
+                </view>
+                <view class="dish_info data-v-54d3589c">
+                  <view class="dish_name data-v-54d3589c">{{obj.$orig.name}}</view>
+                  <view class="dish_dishFlavor data-v-54d3589c">{{obj.$orig.dishFlavor?obj.$orig.dishFlavor:''}}</view>
+                  <view class="dish_price data-v-54d3589c">×<block wx:if="{{obj.$orig.number&&obj.$orig.number>0}}"><text class="dish_number data-v-54d3589c">{{obj.$orig.number}}</text></block>
+                  </view>
+                  <view class="dish_active data-v-54d3589c"><text class="data-v-54d3589c">￥</text>{{''+obj.g0+''}}</view>
+                </view>
+              </view>
+            </block>
+            <view class="iconUp data-v-54d3589c">
+              <block wx:if="{{orderDetailsData.orderDetailList.length>2}}">
+                <view data-event-opts="{{[['tap',[['e0',['$event']]]]]}}" bindtap="__e" class="data-v-54d3589c"><text class="data-v-54d3589c">{{!showDisplay?'Expand':'Click'}}</text>
+                  <image class="{{['icon_img','data-v-54d3589c',showDisplay?'icon_imgDown':'']}}" src="../../static/toRight.png" mode></image>
+                </view>
+              </block>
+            </view>
+            <view class="orderList data-v-54d3589c">
+              <view class="orderInfo data-v-54d3589c"><text class="text data-v-54d3589c">Packing fee</text><text class="may data-v-54d3589c">￥</text>{{''+orderDetailsData.packAmount+''}}</view>
+              <view class="orderInfo data-v-54d3589c"><text class="text data-v-54d3589c">Delivery fee</text><text class="may data-v-54d3589c">￥</text>6</view>
+              <view class="totalMoney data-v-54d3589c">Total<text class="text data-v-54d3589c"><text class="data-v-54d3589c">￥</text>{{''+orderDetailsData.amount+''}}</text></view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="box contactMerchant data-v-54d3589c">
+        <view data-event-opts="{{[['tap',[['handlePhone',['bottom']]]]]}}" bindtap="__e" class="data-v-54d3589c">
+          <view class="phoneIcon data-v-54d3589c"></view>Contact Merchant
+        </view>
+      </view>
+      <view class="box data-v-54d3589c">
+        <view class="orderBaseInfo data-v-54d3589c">
+          <view class="data-v-54d3589c">
+            <view class="data-v-54d3589c">Expected time</view>
+            <view class="data-v-54d3589c">{{orderDetailsData.deliveryStatus===1?'Deliver immediately':orderDetailsData.estimatedDeliveryTime}}</view>
+          </view>
+          <view class="data-v-54d3589c">
+            <view class="data-v-54d3589c">Delivery address</view>
+            <view class="data-v-54d3589c">
+              <view class="nameInfo data-v-54d3589c"><text class="data-v-54d3589c">{{orderDetailsData.consignee}}</text>{{''+orderDetailsData.phone+''}}</view>
+              <view class="data-v-54d3589c">{{orderDetailsData.address}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="box data-v-54d3589c">
+        <view class="orderBaseInfo data-v-54d3589c">
+          <view class="data-v-54d3589c">
+            <view class="data-v-54d3589c">Order number</view>
+            <view class="data-v-54d3589c">{{orderDetailsData.number}}</view>
+          </view>
+          <view class="data-v-54d3589c">
+            <view class="data-v-54d3589c">Order Time</view>
+            <view class="data-v-54d3589c">{{orderDetailsData.orderTime}}</view>
+          </view>
+          <view class="data-v-54d3589c">
+            <view class="data-v-54d3589c">Payment Method</view>
+            <view class="data-v-54d3589c">{{orderDetailsData.payMethod===1?'WeChat':'Alipay'}}</view>
+          </view>
+          <view class="data-v-54d3589c">
+            <view class="data-v-54d3589c">Number of tableware</view>
+            <view class="data-v-54d3589c">{{orderDetailsData.tablewareStatus===1?orderDetailsData.tablewareNumber:orderDetailsData.tablewareNumber}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <uni-popup class="comPopupBox data-v-54d3589c vue-ref" vue-id="45983bea-2" data-ref="commonPopup" bind:__l="__l" vue-slots="{{['default']}}">
+      <view class="popup-content data-v-54d3589c">
+        <view class="text data-v-54d3589c">{{textTip}}</view>
+        <block wx:if="{{showConfirm}}">
+          <view class="btn data-v-54d3589c">
+            <view data-event-opts="{{[['tap',[['closePopupInfo',['$event']]]]]}}" bindtap="__e" class="data-v-54d3589c">确认</view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="btn data-v-54d3589c">
+            <view data-event-opts="{{[['tap',[['closePopupInfo',['$event']]]]]}}" bindtap="__e" class="data-v-54d3589c">Wait</view>
+            <view data-event-opts="{{[['tap',[['handlePhone',['bottom']]]]]}}" bindtap="__e" class="data-v-54d3589c">Call</view>
+          </view>
+        </block>
+      </view>
+    </uni-popup>
+    <view class="container phoneCon data-v-54d3589c">
+      <uni-popup class="popupBox data-v-54d3589c vue-ref" bind:change="__e" vue-id="45983bea-3" data-ref="phone" data-event-opts="{{[['^change',[['change']]]]}}" bind:__l="__l" vue-slots="{{['default']}}">
+        <view class="popup-content data-v-54d3589c">
+          <view class="data-v-54d3589c">{{phone}}</view>
+          <view data-event-opts="{{[['tap',[['',['$event']]]]]}}" bindtap="__e" class="data-v-54d3589c">Call</view>
+          <view data-event-opts="{{[['tap',[['closePopup',['$event']]]]]}}" class="closePopup data-v-54d3589c" bindtap="__e">Cancel</view>
+        </view>
+        
+      </uni-popup>
+    </view>
+  </view>
+</view>

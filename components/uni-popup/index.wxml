@@ -1,0 +1,1 @@
+<view class="{{['popup-content',(type==='left'||type==='right')?'popup-height':'']}}"><text class="text">Please contact the merchant!</text></view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Payment Order",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#333333",
+  "usingComponents": {}
+}
