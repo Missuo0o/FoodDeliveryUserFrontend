@@ -7561,8 +7561,8 @@
         });
         exports.baseUrl = void 0;
 
-        var baseUrl = 'https://yollin.me'; 
-        // var baseUrl = 'http://localhost:8080'; 
+        // var baseUrl = 'https://yollin.me'; 
+        var baseUrl = 'http://localhost:8080'; 
 
         exports.baseUrl = baseUrl;
 
